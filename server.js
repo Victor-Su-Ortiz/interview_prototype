@@ -3,19 +3,22 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const axios = require("axios");
 const Class = require("./models/Class");
+const cors = require("cors");
 
 const app = express();
 const PORT = 3000;
 
 // Connect to MongoDB driver
-// mongoose.connect("mongodb://localhost:27017/mydatabase");
+mongoose.connect("mongodb://localhost:27017/mydatabase");
 
 app.use(bodyParser.json());
 app.use(express.static("public"));
+app.use(cors());
 
 // Fetch all classes
 app.get("/classes", async (req, res) => {
   const classes = await Class.find({});
+  console.log(classes);
   res.json(classes);
 });
 

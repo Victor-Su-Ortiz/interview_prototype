@@ -10,9 +10,10 @@
     <div id="classInfo"></div>
     <script>
       async function fetchClasses() {
-        const response = await fetch("/classes");
+        const response = await fetch("http://localhost:3000/classes");
         const classes = await response.json();
         const classInfoDiv = document.getElementById("classInfo");
+        console.log(classes);
         classInfoDiv.innerHTML = classes
           .map(
             (c) => `
@@ -25,7 +26,6 @@
           )
           .join("");
       }
-
       fetchClasses();
     </script>
   </body>
